@@ -1,5 +1,7 @@
 package org.invoicegen;
 
+import java.util.List;
+
 public class InvoiceData {
     private String number;
     private String customerName;
@@ -7,114 +9,64 @@ public class InvoiceData {
     private String customerEmail;
     private String taxId;
     private String invoiceDate;
-    private String serviceProvided;
-    private int quantity;
-    private double price;
-    private double sum;
-    private String paymentMethod;
+    private String servicePeriodStart;
+    private String servicePeriodEnd;
+    private List<InvoiceDataItem> items;
+    private double totalAmount;
+    private String iban = "DE12345678901234567890";
+    private String bic = "BANKDEFFXXX";
 
     public InvoiceData() {
     }
 
-    public InvoiceData(String number, String customerName, String customerAddress, String customerEmail, String taxId, String invoiceDate, String serviceProvided, int quantity, double price, double sum, String paymentMethod) {
+    public InvoiceData(String number, String customerName, String customerAddress, String customerEmail, String taxId, String invoiceDate, String servicePeriodStart, String servicePeriodEnd, List<InvoiceDataItem> items, double totalAmount) {
         this.number = number;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerEmail = customerEmail;
         this.taxId = taxId;
         this.invoiceDate = invoiceDate;
-        this.serviceProvided = serviceProvided;
-        this.quantity = quantity;
-        this.price = price;
-        this.sum = sum;
-        this.paymentMethod = paymentMethod;
+        this.servicePeriodStart = servicePeriodStart;
+        this.servicePeriodEnd = servicePeriodEnd;
+        this.items = items;
+        this.totalAmount = totalAmount;
+        this.iban = iban;
+        this.bic = bic;
     }
 
-    public String getNumber() {
-        return number;
-    }
+    public String getNumber() { return number; }
+    public void setNumber(String number) { this.number = number; }
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
+    public String getCustomerName() { return customerName; }
+    public void setCustomerName(String customerName) { this.customerName = customerName; }
 
-    public String getCustomerName() {
-        return customerName;
-    }
+    public String getCustomerAddress() { return customerAddress; }
+    public void setCustomerAddress(String customerAddress) { this.customerAddress = customerAddress; }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
+    public String getCustomerEmail() { return customerEmail; }
+    public void setCustomerEmail(String customerEmail) { this.customerEmail = customerEmail; }
 
-    public String getCustomerAddress() {
-        return customerAddress;
-    }
+    public String getTaxId() { return taxId; }
+    public void setTaxId(String taxId) { this.taxId = taxId; }
 
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress;
-    }
+    public String getInvoiceDate() { return invoiceDate; }
+    public void setInvoiceDate(String invoiceDate) { this.invoiceDate = invoiceDate; }
 
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
+    public String getServicePeriodStart() { return servicePeriodStart; }
+    public void setServicePeriodStart(String servicePeriodStart) { this.servicePeriodStart = servicePeriodStart; }
 
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
+    public String getServicePeriodEnd() { return servicePeriodEnd; }
+    public void setServicePeriodEnd(String servicePeriodEnd) { this.servicePeriodEnd = servicePeriodEnd; }
 
-    public String getTaxId() {
-        return taxId;
-    }
+    public List<InvoiceDataItem> getItems() { return items; }
+    public void setItems(List<InvoiceDataItem> items) { this.items = items; }
 
-    public void setTaxId(String taxId) {
-        this.taxId = taxId;
-    }
+    public double getTotalAmount() { return totalAmount; }
+    public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
 
-    public String getInvoiceDate() {
-        return invoiceDate;
-    }
+    public String getIban() { return iban; }
+    public void setIban(String iban) { this.iban = iban; }
 
-    public void setInvoiceDate(String invoiceDate) {
-        this.invoiceDate = invoiceDate;
-    }
-
-    public String getServiceProvided() {
-        return serviceProvided;
-    }
-
-    public void setServiceProvided(String serviceProvided) {
-        this.serviceProvided = serviceProvided;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getSum() {
-        return sum;
-    }
-
-    public void setSum(double sum) {
-        this.sum = sum;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
+    public String getBic() { return bic; }
+    public void setBic(String bic) { this.bic = bic; }
 }
