@@ -1,0 +1,3 @@
+number,customer name,customer address,customer email,taxId,invoice date,service provided,quantity,price,sum,payment method
+2023-0001,Viktoriia Semion,,,1293418,19.6.23,Anzahlung für die Organisation von Wanderungen in der Sächsischen Schweiz,1,90,90,
+2023-0002,Andjei Flemming,,andjei@example.org,1293418,7.7.23,Besprechung über Wanderungen mit Localie GmbH,2,15,30,
