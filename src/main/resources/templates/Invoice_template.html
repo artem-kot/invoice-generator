@@ -1,17 +1,70 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Rechnung Nr. ${invoice_number}</title>
-    <link rel="stylesheet" href="invoice-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        }
+        .header, .footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .header .recipient {
+            float: left;
+            width: 50%;
+        }
+        .header .invoice-info {
+            text-align: center;
+        }
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+        .invoice-details table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+        }
+        .invoice-details table td {
+            padding: 5px;
+        }
+        .table-items {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .table-items th, .table-items td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .table-items th {
+            background-color: #f9f9f9;
+        }
+        .total {
+            text-align: right;
+        }
+        .total strong {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <div class="invoice-box">
     <div class="header">
         <!-- Left: Recipient Information -->
         <div class="recipient">
-            <strong>${recipient_name}</strong><br>
+            <strong>${recipient_name}</strong><br/>
             ${recipient_address}
+            ${recipient_email}
         </div>
 
         <!-- Center: Invoice Information -->
@@ -71,8 +124,8 @@
             Gemäß § 19 UStG (Kleinunternehmerregelung) enthält der Rechnungsbetrag keine Umsatzsteuer.
         </p>
         <p>
-            Ich bitte Sie den Rechnungsbetrag innerhalb von 10 Tagen auf mein Konto zu überweisen:<br>
-            IBAN: ${iban}<br>
+            Ich bitte Sie den Rechnungsbetrag innerhalb von 10 Tagen auf mein Konto zu überweisen:<br/>
+            IBAN: ${iban}<br/>
             BIC: ${bic}
         </p>
     </div>
