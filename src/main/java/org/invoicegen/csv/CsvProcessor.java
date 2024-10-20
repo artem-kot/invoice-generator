@@ -2,8 +2,6 @@ package org.invoicegen.csv;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.bind.util.ISO8601Utils;
-import com.opencsv.CSVReader;
 import org.invoicegen.InvoiceData;
 import org.invoicegen.InvoiceDataItem;
 

@@ -1,20 +1,23 @@
 package org.invoicegen.pdf;
 
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.html.simpleparser.HTMLWorker;
-import com.itextpdf.text.pdf.PdfWriter;
-import freemarker.template.*;
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.invoicegen.InvoiceData;
 import org.invoicegen.InvoiceDataItem;
 import org.invoicegen.csv.CsvProcessor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Entities;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PdfGenerator {
     private Configuration freemarkerConfig;
@@ -56,14 +59,11 @@ public class PdfGenerator {
                 StringWriter htmlWriter = new StringWriter();
                 template.process(dataModel, htmlWriter);
                 String htmlContent = htmlWriter.toString();
-
-                htmlContent = cleanHtml(htmlContent);
-
                 String pdfFileName = "invoice_" + invoiceData.getNumber() + ".pdf";
                 createPdfFromHtml(htmlContent, pdfFileName);
 
 
-            } catch (TemplateException | IOException | DocumentException e) {
+            } catch (TemplateException | IOException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -76,19 +76,14 @@ public class PdfGenerator {
         return doc.html();
     }
 
-    private void createPdfFromHtml(String htmlContent, String pdfFileName) throws IOException, DocumentException {
-        Document document = new Document();
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFileName));
-        document.open();
-
-        InputStream htmlStream = new ByteArrayInputStream(htmlContent.getBytes(StandardCharsets.UTF_8));
-        InputStreamReader htmlReader = new InputStreamReader(htmlStream, StandardCharsets.UTF_8);
-
-        HTMLWorker htmlWorker = new HTMLWorker(document);
-        htmlWorker.parse(htmlReader);
-
-        document.close();
-        writer.close();
+    private void createPdfFromHtml(String htmlContent, String pdfFileName) throws IOException {
+        try (OutputStream outputStream = new FileOutputStream(pdfFileName)) {
+            PdfRendererBuilder builder = new PdfRendererBuilder();
+            builder.useFastMode();
+            builder.withHtmlContent(htmlContent, null);
+            builder.toStream(outputStream);
+            builder.run();
+        }
     }
 
     public static void main(String[] args) {
