@@ -34,6 +34,7 @@ public class PdfGenerator {
                 Map<String, Object> dataModel = new HashMap<>();
                 dataModel.put("recipient_name", invoiceData.getCustomerName());
                 dataModel.put("recipient_address", invoiceData.getCustomerAddress());
+                dataModel.put("recipient_email", invoiceData.getCustomerEmail());
                 dataModel.put("invoice_number", invoiceData.getNumber());
                 dataModel.put("invoice_date", invoiceData.getInvoiceDate());
                 dataModel.put("tax_number", invoiceData.getTaxId());

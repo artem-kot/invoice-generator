@@ -22,21 +22,6 @@ public class InvoiceData {
     public InvoiceData() {
     }
 
-    public InvoiceData(String number, String customerName, String customerAddress, String customerEmail, String taxId, String invoiceDate, String servicePeriodStart, String servicePeriodEnd, List<InvoiceDataItem> items, double totalAmount) {
-        this.number = number;
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerEmail = customerEmail;
-        this.taxId = taxId;
-        this.invoiceDate = invoiceDate;
-        this.servicePeriodStart = servicePeriodStart;
-        this.servicePeriodEnd = servicePeriodEnd;
-        this.items = items;
-        this.totalAmount = totalAmount;
-        this.iban = iban;
-        this.bic = bic;
-    }
-
     public String getNumber() { return number; }
     public void setNumber(String number) { this.number = number; }
 
@@ -54,7 +39,7 @@ public class InvoiceData {
 
     public String getInvoiceDate() { return invoiceDate; }
     public void setInvoiceDate(String invoiceDate) {
-        this.invoiceDate = invoiceDate;
+        this.invoiceDate = transformDate(invoiceDate);
         setServicePeriodStart();
         setServicePeriodEnd();
     }
@@ -76,11 +61,7 @@ public class InvoiceData {
     public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
 
     public String getIban() { return iban; }
-    public void setIban(String iban) { this.iban = iban; }
-
     public String getBic() { return bic; }
-    public void setBic(String bic) { this.bic = bic; }
-
     private String transformDate(String inputDate) {
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("d.M.yy");
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
