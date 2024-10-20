@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PdfGenerator {
-    private Configuration freemarkerConfig;
+    private final Configuration freemarkerConfig;
 
     public PdfGenerator() {
         freemarkerConfig = new Configuration(Configuration.VERSION_2_3_30);
@@ -68,13 +68,6 @@ public class PdfGenerator {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private String cleanHtml(String html) {
-        org.jsoup.nodes.Document doc = Jsoup.parse(html);
-        doc.outputSettings(new org.jsoup.nodes.Document.OutputSettings().prettyPrint(false));
-        doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
-        return doc.html();
     }
 
     private void createPdfFromHtml(String htmlContent, String pdfFileName) throws IOException {

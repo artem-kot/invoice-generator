@@ -16,8 +16,8 @@ public class InvoiceData {
     private String servicePeriodEnd;
     private List<InvoiceDataItem> items;
     private double totalAmount;
-    private String iban = "DE12345678901234567890";
-    private String bic = "BANKDEFFXXX";
+    private final String iban = "DE12345678901234567890";
+    private final String bic = "BANKDEFFXXX";
 
     public InvoiceData() {
     }
