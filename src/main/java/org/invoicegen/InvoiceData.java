@@ -46,12 +46,12 @@ public class InvoiceData {
 
     public String getServicePeriodStart() { return servicePeriodStart; }
     public void setServicePeriodStart() {
-        servicePeriodStart = transformDate(invoiceDate);
+        servicePeriodStart = invoiceDate;
     }
 
     public String getServicePeriodEnd() { return servicePeriodEnd; }
     public void setServicePeriodEnd() {
-        servicePeriodEnd = createServiceEndDate(invoiceDate);
+        servicePeriodEnd = createServiceEndDate();
     }
 
     public List<InvoiceDataItem> getItems() { return items; }
@@ -73,14 +73,13 @@ public class InvoiceData {
         }
     }
 
-    private String createServiceEndDate(String inputDate) {
-        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("d.M.yy");
+    private String createServiceEndDate() {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         try {
-            LocalDate date = LocalDate.parse(inputDate, inputFormat);
+            LocalDate date = LocalDate.parse(getInvoiceDate(), outputFormat);
             return date.plusDays(30).format(outputFormat);
         } catch (DateTimeParseException e) {
-            System.out.println("Couldn't process date: " + inputDate + "\n" + e.getMessage());
+            System.out.println("Couldn't process date: " + getInvoiceDate() + "\n" + e.getMessage());
             return "";
         }
     }
